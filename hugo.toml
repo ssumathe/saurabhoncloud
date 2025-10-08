@@ -1,4 +1,4 @@
-baseURL = 'https://example.org/'
+baseURL = "https://ssumathe.github.io/saurabhoncloud/"
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'My Cloud Page'
 theme = "ananke"
