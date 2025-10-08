@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "main.css",
-	"sourceRoot": "/Users/saurabhumathe/my-hugo-site",
+	"sourceRoot": "/Users/saurabhumathe/Documents/saurabhoncloud/my-hugo-site",
 	"sources": [
 		"ananke/css/main.css"
 	],
