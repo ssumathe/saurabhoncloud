@@ -1,6 +1,6 @@
 +++
 date = '2025-05-19T22:23:46+05:30'
-draft = true
+draft = false
 title = 'EKS node Encrypted volumes in AWS'
 +++
 Recently, I was working on an assignment to fix the encryption issue noticed in one of the security scans.   
