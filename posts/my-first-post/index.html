@@ -1,130 +1,15 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    
-    <title>My First Post | My New Hugo Site</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="Recently, I was working on an assignment to fix the encryption issue noticed in one of the security scans.
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><title>EKS node Encrypted volumes in AWS | My New Hugo Site</title><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content="Recently, I was working on an assignment to fix the encryption issue noticed in one of the security scans.
 AWS was creating the EKS nodes with unecrypted volume type and we learned that with eksctl commands to create the eks nodes AWS by default creates unencrypted volume as they recommend clients or users to manage the encryption (which i think should be by defualt encrypted.).
-Now to fix this in our operational lower environments we had 2 options which I want to describe in this blog:">
-    <meta name="generator" content="Hugo 0.147.3">
-    
-    
-    
-      <meta name="robots" content="noindex, nofollow">
-    
-    
-
-    
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
-
-
-
-
-    
-
-
-    
-      
-
-    
-
-    
-
-    
-      <link rel="canonical" href="http://localhost:1313/posts/my-first-post/">
-    
-
-    <meta property="og:url" content="http://localhost:1313/posts/my-first-post/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My First Post">
-  <meta property="og:description" content="Recently, I was working on an assignment to fix the encryption issue noticed in one of the security scans.
+Now to fix this in our operational lower environments we had 2 options which I want to describe in this blog:"><meta name=generator content="Hugo 0.151.0"><meta name=robots content="index, follow"><link rel=stylesheet href=/ananke/css/main.min.d05fb5f317fcf33b3a52936399bdf6f47dc776516e1692e412ec7d76f4a5faa2.css><link rel=canonical href=https://example.org/posts/my-first-post/><meta property="og:url" content="https://example.org/posts/my-first-post/"><meta property="og:site_name" content="My New Hugo Site"><meta property="og:title" content="EKS node Encrypted volumes in AWS"><meta property="og:description" content="Recently, I was working on an assignment to fix the encryption issue noticed in one of the security scans.
 AWS was creating the EKS nodes with unecrypted volume type and we learned that with eksctl commands to create the eks nodes AWS by default creates unencrypted volume as they recommend clients or users to manage the encryption (which i think should be by defualt encrypted.).
-Now to fix this in our operational lower environments we had 2 options which I want to describe in this blog:">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-05-19T22:23:46+05:30">
-    <meta property="article:modified_time" content="2025-05-19T22:23:46+05:30">
-
-  <meta itemprop="name" content="My First Post">
-  <meta itemprop="description" content="Recently, I was working on an assignment to fix the encryption issue noticed in one of the security scans.
+Now to fix this in our operational lower environments we had 2 options which I want to describe in this blog:"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-05-19T22:23:46+05:30"><meta property="article:modified_time" content="2025-05-19T22:23:46+05:30"><meta itemprop=name content="EKS node Encrypted volumes in AWS"><meta itemprop=description content="Recently, I was working on an assignment to fix the encryption issue noticed in one of the security scans.
 AWS was creating the EKS nodes with unecrypted volume type and we learned that with eksctl commands to create the eks nodes AWS by default creates unencrypted volume as they recommend clients or users to manage the encryption (which i think should be by defualt encrypted.).
-Now to fix this in our operational lower environments we had 2 options which I want to describe in this blog:">
-  <meta itemprop="datePublished" content="2025-05-19T22:23:46+05:30">
-  <meta itemprop="dateModified" content="2025-05-19T22:23:46+05:30">
-  <meta itemprop="wordCount" content="251">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="My First Post">
-  <meta name="twitter:description" content="Recently, I was working on an assignment to fix the encryption issue noticed in one of the security scans.
+Now to fix this in our operational lower environments we had 2 options which I want to describe in this blog:"><meta itemprop=datePublished content="2025-05-19T22:23:46+05:30"><meta itemprop=dateModified content="2025-05-19T22:23:46+05:30"><meta itemprop=wordCount content="251"><meta name=twitter:card content="summary"><meta name=twitter:title content="EKS node Encrypted volumes in AWS"><meta name=twitter:description content="Recently, I was working on an assignment to fix the encryption issue noticed in one of the security scans.
 AWS was creating the EKS nodes with unecrypted volume type and we learned that with eksctl commands to create the eks nodes AWS by default creates unencrypted volume as they recommend clients or users to manage the encryption (which i think should be by defualt encrypted.).
-Now to fix this in our operational lower environments we had 2 options which I want to describe in this blog:">
-
-	
-  </head><body class="ma0 avenir bg-near-white development">
-
-    
-   
-  
-
-  <header>
-    <div class="bg-black">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l center items-center justify-between">
-    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
-      
-        My New Hugo Site
-      
-    </a>
-    <div class="flex-l items-center">
-      
-
-      
-      <div class="ananke-socials"></div>
-
-    </div>
-  </div>
-</nav>
-
-    </div>
-  </header>
-
-
-
-    <main class="pb7" role="main">
-      
-  
-  
-  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
-    <header class="mt4 w-100">
-      <aside class="instapaper_ignoref b helvetica tracked ttu">
-          
-        Posts
-      </aside><div id="sharing" class="mt3 ananke-socials"></div>
-<h1 class="f1 athelas mt3 mb1">My First Post</h1>
-      
-      
-      
-      <time class="f6 mv4 dib tracked" datetime="2025-05-19T22:23:46+05:30">May 19, 2025</time>
-      
-
-      
-      
-    </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>Recently, I was working on an assignment to fix the encryption issue noticed in one of the security scans.<br>
-AWS was creating the EKS nodes with unecrypted volume type and we learned that with eksctl commands to create the eks nodes AWS by default creates unencrypted volume as they recommend clients or users to manage the encryption (which i think should be by defualt encrypted.).</p>
-<p>Now to fix this in our operational lower environments we had 2 options which I want to describe in this blog:</p>
-<ol>
-<li>Using Custom launch template to update the volume type to encrypted. And use this launch template to create the nodeGroup in eks.</li>
-</ol>
-<p>To create a launch template using json you can use the below json</p>
-<pre tabindex="0"><code>aws ec2 create-launch-template \
+Now to fix this in our operational lower environments we had 2 options which I want to describe in this blog:"></head><body class="ma0 avenir bg-near-white production"><header><div class=bg-black><nav class="pv3 ph3 ph4-ns" role=navigation><div class="flex-l center items-center justify-between"><a href=/ class="f3 fw2 hover-white white-90 dib no-underline">My New Hugo Site</a><div class="flex-l items-center"><div class=ananke-socials></div></div></div></nav></div></header><main class=pb7 role=main><article class="flex-l mw8 center ph3 flex-wrap justify-between"><header class="mt4 w-100"><aside class="instapaper_ignoref b helvetica tracked ttu">Posts</aside><div id=sharing class="mt3 ananke-socials"></div><h1 class="f1 athelas mt3 mb1">EKS node Encrypted volumes in AWS</h1><time class="f6 mv4 dib tracked" datetime=2025-05-19T22:23:46+05:30>May 19, 2025</time></header><div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>Recently, I was working on an assignment to fix the encryption issue noticed in one of the security scans.<br>AWS was creating the EKS nodes with unecrypted volume type and we learned that with eksctl commands to create the eks nodes AWS by default creates unencrypted volume as they recommend clients or users to manage the encryption (which i think should be by defualt encrypted.).</p><p>Now to fix this in our operational lower environments we had 2 options which I want to describe in this blog:</p><ol><li>Using Custom launch template to update the volume type to encrypted. And use this launch template to create the nodeGroup in eks.</li></ol><p>To create a launch template using json you can use the below json</p><pre tabindex=0><code>aws ec2 create-launch-template \
   --launch-template-name TemplateForEncryption \
   --launch-template-data file://config.json
-</code></pre><p>and json can be given as below, note that Encrypted: true, you can use this template to even update volumeType from gp2 to gp3.</p>
-<pre tabindex="0"><code>  {
+</code></pre><p>and json can be given as below, note that Encrypted: true, you can use this template to even update volumeType from gp2 to gp3.</p><pre tabindex=0><code>  {
     &#34;BlockDeviceMappings&#34;:[
         {
             &#34;DeviceName&#34;:&#34;/dev/sda1&#34;,
@@ -151,39 +36,4 @@ AWS was creating the EKS nodes with unecrypted volume type and we learned that w
         }
     ]
 }
-</code></pre><ol start="2">
-<li>Another way is to enable EBS encryption on account level so that any volume created is Encrypted by default. It includes both EBS volumes for ec2, nodes and also EBS PVCs if any.<br>
-To enable it you can go to ec2 dashboard &ndash;&gt; data-protection and security &ndash;&gt; EBS encryption. (this is regional setting).<br>
-For EFS PVCs in EKS, this can be done during the EFS File system creation in AWS.</li>
-</ol>
-<ul class="pa0">
-  
-</ul>
-<div class="mt6 instapaper_ignoref">
-      
-      
-      </div>
-    </div>
-
-    <aside class="w-30-l mt6-l">
-
-
-
-
-</aside>
-
-  </article>
-
-    </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
-    &copy;  My New Hugo Site 2025 
-  </a>
-    <div><div class="ananke-socials"></div>
-</div>
-  </div>
-</footer>
-
-  </body>
-</html>
+</code></pre><ol start=2><li>Another way is to enable EBS encryption on account level so that any volume created is Encrypted by default. It includes both EBS volumes for ec2, nodes and also EBS PVCs if any.<br>To enable it you can go to ec2 dashboard &ndash;> data-protection and security &ndash;> EBS encryption. (this is regional setting).<br>For EFS PVCs in EKS, this can be done during the EFS File system creation in AWS.</li></ol><ul class=pa0></ul><div class="mt6 instapaper_ignoref"></div></div><aside class="w-30-l mt6-l"></aside></article></main><footer class="bg-black bottom-0 w-100 pa3" role=contentinfo><div class="flex justify-between"><a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href=https://example.org/>&copy; My New Hugo Site 2025</a><div><div class=ananke-socials></div></div></div></footer></body></html>
