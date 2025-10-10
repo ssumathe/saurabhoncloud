@@ -1,4 +1,4 @@
-baseURL = "https://www.saurabhoncloud.com/"
+baseURL = "https://saurabhoncloud.com/"
 languageCode = 'en-us'
 title = 'My Cloud Page'
 theme = "ananke"
