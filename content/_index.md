@@ -1,5 +1,5 @@
 ---
-title: "Redirecting..."
+title: "Encrypted volume for EKS Nodes in AWS"
 type: "redirect"
 url: "/posts/my-first-post/"
 ---
