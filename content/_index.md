@@ -1,7 +1,15 @@
 ---
-title: "Encrypted volume for EKS Nodes in AWS"
-type: "redirect"
-url: "/posts/my-first-post/"
+title: "Welcome to Saurabh On Cloud"
+description: "Cloud, DevOps, and Tech Blog"
+# TODO - Add more front matter fields if your theme supports them, e.g. images, sections, etc.
 ---
-<meta http-equiv="refresh" content="0; url=/posts/my-first-post/">
 
+Hi! 👋 Welcome to my cloud technology blog.
+
+Explore articles, tutorials, and resources on:
+- Cloud computing
+- DevOps practices
+- Automation
+- And much more!
+
+<!-- TODO - can use markdown here for formatting, images, links, etc. -->
