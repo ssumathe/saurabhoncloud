@@ -2,3 +2,5 @@
 	path = themes/ananke
 	url = https://github.com/ssumathe/gohugo-theme-ananke
     branch = main
+[submodule "themes"]
+	url = https://github.com/ssumathe/gohugo-theme-ananke
