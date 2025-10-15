@@ -3,6 +3,10 @@ date = '2025-05-19T22:23:46+05:30'
 draft = false
 title = 'EKS node Encrypted volumes in AWS'
 +++
+
+
+# How to get EKS node volume Encrypted AWS EKS
+
 Recently, I was working on an assignment to fix the encryption issue noticed in one of the security scans.   
 AWS was creating the EKS nodes with unecrypted volume type and we learned that with eksctl commands to create the eks nodes AWS by default creates unencrypted volume as they recommend clients or users to manage the encryption (which i think should be by defualt encrypted.). 
 
