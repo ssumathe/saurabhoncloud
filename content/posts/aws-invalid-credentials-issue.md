@@ -7,6 +7,8 @@ tags: ["AWS", "IAM", "NTP", "DevOps", "Troubleshooting"]
 categories: ["AWS", "DevOps"]
 ---
 
+# AWS Invalid Credentials Issue — Time Sync Resolution
+
 🧩 Problem Overview
 
 While using AWS CLI, you might sometimes face the following error even when your credentials are correct:
