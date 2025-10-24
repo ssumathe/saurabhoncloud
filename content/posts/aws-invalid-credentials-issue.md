@@ -3,12 +3,6 @@ title: "AWS Invalid Credentials Issue — Time Sync Resolution"
 date: 2025-10-24T18:30:00+05:30
 draft: false
 description: "Fixing 'AWS was not able to validate the provided access credentials' error by resolving time synchronization issues between your VM and AWS."
-tags: ["AWS", "IAM", "NTP", "DevOps", "Troubleshooting"]
-categories: ["AWS", "DevOps"]
-cover:
-image: "/images/aws-credentials-error.jpg"
-alt: "AWS Credentials Validation Error"
-caption: "AWS IAM Invalid Credentials due to Time Sync Issue"
 ---
 
 🧩 Problem Overview
