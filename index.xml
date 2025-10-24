@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Welcome to Saurabh On Cloud blogs on My Cloud Page</title><link>https://saurabhoncloud.com/</link><description>Recent content in Welcome to Saurabh On Cloud blogs on My Cloud Page</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 15 Oct 2025 11:45:00 +0000</lastBuildDate><atom:link href="https://saurabhoncloud.com/index.xml" rel="self" type="application/rss+xml"/><item><title>How We Optimized Our AWS Costs by 50% — Real Lessons from the Field</title><link>https://saurabhoncloud.com/posts/how-we-optimized-our-aws-costs/</link><pubDate>Wed, 15 Oct 2025 11:45:00 +0000</pubDate><guid>https://saurabhoncloud.com/posts/how-we-optimized-our-aws-costs/</guid><description>&lt;h1 id="how-we-optimized-our-aws-costs-by-50--real-lessons-from-the-field"&gt;How We Optimized Our AWS Costs by 50% — Real Lessons from the Field&lt;/h1&gt;
 &lt;p&gt;A few days ago, we noticed a sudden and unexpected spike in our AWS billing while reviewing the AWS Cost Explorer dashboard. To our surprise, services like &lt;strong&gt;Druid, CloudWatch, S3, EC2, and RDS&lt;/strong&gt; had all seen a drastic increase in costs compared to the previous two months — large enough to trigger escalations from our finance team.&lt;/p&gt;</description></item><item><title>EKS node Encrypted volumes in AWS</title><link>https://saurabhoncloud.com/posts/eks-node-encryption/</link><pubDate>Mon, 19 May 2025 22:23:46 +0530</pubDate><guid>https://saurabhoncloud.com/posts/eks-node-encryption/</guid><description>&lt;h1 id="how-to-get-eks-node-volume-encrypted-aws-eks"&gt;How to get EKS node volume Encrypted AWS EKS&lt;/h1&gt;
 &lt;p&gt;Recently, I was working on an assignment to fix the encryption issue noticed in one of the security scans.&lt;br&gt;
-AWS was creating the EKS nodes with unecrypted volume type and we learned that with eksctl commands to create the eks nodes AWS by default creates unencrypted volume as they recommend clients or users to manage the encryption (which i think should be by defualt encrypted.).&lt;/p&gt;</description></item></channel></rss>
+AWS was creating the EKS nodes with unecrypted volume type and we learned that with eksctl commands to create the eks nodes AWS by default creates unencrypted volume as they recommend clients or users to manage the encryption (which i think should be by defualt encrypted.).&lt;/p&gt;</description></item><item><title/><link>https://saurabhoncloud.com/posts/aws-invalid-credentials-issue/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://saurabhoncloud.com/posts/aws-invalid-credentials-issue/</guid><description>&lt;p&gt;title: &amp;ldquo;AWS Invalid Credentials Issue — Time Sync Resolution&amp;rdquo;
+date: 2025-10-24T18:30:00+05:30
+draft: false
+description: &amp;ldquo;Fixing &amp;lsquo;AWS was not able to validate the provided access credentials&amp;rsquo; error by resolving time synchronization issues between your VM and AWS.&amp;rdquo;
+tags: [&amp;ldquo;AWS&amp;rdquo;, &amp;ldquo;IAM&amp;rdquo;, &amp;ldquo;NTP&amp;rdquo;, &amp;ldquo;DevOps&amp;rdquo;, &amp;ldquo;Troubleshooting&amp;rdquo;]
+categories: [&amp;ldquo;AWS&amp;rdquo;, &amp;ldquo;DevOps&amp;rdquo;]
+cover:
+image: &amp;ldquo;/images/aws-credentials-error.jpg&amp;rdquo;
+alt: &amp;ldquo;AWS Credentials Validation Error&amp;rdquo;
+caption: &amp;ldquo;AWS IAM Invalid Credentials due to Time Sync Issue&amp;rdquo;
+🧩 Problem Overview&lt;/p&gt;
+&lt;p&gt;While using AWS CLI, you might sometimes face the following error even when your credentials are correct:
+An error occurred (AuthFailure) when calling the DescribeVolumes operation:
+AWS was not able to validate the provided access credentials
+Example:
+aws ec2 describe-volumes &amp;ndash;profile mycred&lt;/p&gt;</description></item></channel></rss>
