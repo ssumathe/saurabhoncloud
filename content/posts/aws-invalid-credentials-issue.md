@@ -46,7 +46,6 @@ Check your chrony configuration file:
 cat /etc/chrony.conf
 
 You’ll typically see lines like:
-# Use public servers from the pool.ntp.org project.
 pool 2.rhel.pool.ntp.org iburst
 
 ✅ Ensure the pool is reachable and valid for your environment.
@@ -69,11 +68,11 @@ Once your time synchronization is fixed, AWS CLI commands should work seamlessly
 aws ec2 describe-volumes --profile mycred
 
 
-No more "AWS was not able to validate the provided access credentials" errors!
+This should resolve "AWS was not able to validate the provided access credentials" errors!
 
-💡 Pro Tip
+If you have any queries, you can reach out to me at below email id.
 
-If you’re managing multiple EC2 or on-prem nodes, automate this time configuration via Ansible or Terraform to ensure consistent NTP settings across your fleet.
+Author: 
+Saurabh — CloudOps & DevOps Engineer
 
-Author: Saurabh — CloudOps & DevOps Engineer
 📧 Contact: hello.saurabhoncloud@gmail.com
