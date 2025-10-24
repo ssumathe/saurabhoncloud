@@ -1,3 +1,4 @@
+---
 title: "AWS Invalid Credentials Issue — Time Sync Resolution"
 date: 2025-10-24T18:30:00+05:30
 draft: false
@@ -8,6 +9,7 @@ cover:
 image: "/images/aws-credentials-error.jpg"
 alt: "AWS Credentials Validation Error"
 caption: "AWS IAM Invalid Credentials due to Time Sync Issue"
+---
 🧩 Problem Overview
 
 While using AWS CLI, you might sometimes face the following error even when your credentials are correct:
