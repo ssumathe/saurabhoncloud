@@ -1,3 +1,5 @@
+---
 title: "Welcome to Saurabh On Cloud blogs"
 description: "Cloud, DevOps, and Tech Blog"
 <div style="max-width: 800px; margin: 0 auto; padding: 40px 20px; text-align: left; line-height: 1.8;"> <h2>Hi 👋 Welcome to my Cloud Technology Blog</h2> <p> I’m <strong>Saurabh</strong>, a CloudOps and DevOps engineer sharing real-world insights, tutorials, and tips on AWS, DevOps, and cloud optimization. </p> <p> This blog is my personal space to share experiences, best practices, and lessons learned while working with cloud technologies. </p> <p> Feel free to explore the posts, ask questions, or get in touch via <a href="mailto:hello.saurabhoncloud@gmail.com">hello.saurabhoncloud@gmail.com</a>. </p> <h3>Explore articles, tutorials, and resources on:</h3> <ul> <li>☁️ Cloud Computing</li> <li>⚙️ DevOps Practices</li> <li>🤖 Automation</li> <li>✨ And Much More!</li> </ul> <p><em>Happy reading!</em></p> </div>
+---
