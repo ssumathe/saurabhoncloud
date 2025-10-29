@@ -1,4 +1,6 @@
 baseURL = "https://saurabhoncloud.com/"
 languageCode = 'en-us'
-title = 'My Cloud Page'
+title = 'Saurabh Cloud Page'
 theme = "ananke"
+[pagination]
+  pagerSize = 5
