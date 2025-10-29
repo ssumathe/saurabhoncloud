@@ -1,0 +1,101 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><title>My Cloud Page</title><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content="EKS RBAC per Namespace Example — Isolated Access for Multiple Users
+This guide explains how to set up RBAC in EKS (Amazon Elastic Kubernetes Service) so that:
+
+user-1 can access resources only in namespace ns-1
+user-2 can access resources only in namespace ns-2
+
+Both users will log in to a bastion VM and run kubectl commands from there.
+
+Overview
+We&rsquo;ll configure:
+
+AWS IAM users and map them to Kubernetes identities using the aws-auth ConfigMap.
+Kubernetes Roles and RoleBindings for namespace-level access control.
+Bastion setup so each Linux user’s kubectl context is limited to their namespace.
+
+
+Step 1: Create IAM Principals
+Create IAM users for each person who will access the cluster:"><meta name=generator content="Hugo 0.152.2"><meta name=robots content="index, follow"><link rel=stylesheet href=/ananke/css/main.min.d05fb5f317fcf33b3a52936399bdf6f47dc776516e1692e412ec7d76f4a5faa2.css><link rel=canonical href=https://saurabhoncloud.com/posts/rbac-users-eks-setup/><meta property="og:url" content="https://saurabhoncloud.com/posts/rbac-users-eks-setup/"><meta property="og:site_name" content="My Cloud Page"><meta property="og:title" content="My Cloud Page"><meta property="og:description" content="EKS RBAC per Namespace Example — Isolated Access for Multiple Users This guide explains how to set up RBAC in EKS (Amazon Elastic Kubernetes Service) so that:
+user-1 can access resources only in namespace ns-1 user-2 can access resources only in namespace ns-2 Both users will log in to a bastion VM and run kubectl commands from there.
+Overview We’ll configure:
+AWS IAM users and map them to Kubernetes identities using the aws-auth ConfigMap. Kubernetes Roles and RoleBindings for namespace-level access control. Bastion setup so each Linux user’s kubectl context is limited to their namespace. Step 1: Create IAM Principals Create IAM users for each person who will access the cluster:"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta itemprop=name content="My Cloud Page"><meta itemprop=description content="EKS RBAC per Namespace Example — Isolated Access for Multiple Users This guide explains how to set up RBAC in EKS (Amazon Elastic Kubernetes Service) so that:
+user-1 can access resources only in namespace ns-1 user-2 can access resources only in namespace ns-2 Both users will log in to a bastion VM and run kubectl commands from there.
+Overview We’ll configure:
+AWS IAM users and map them to Kubernetes identities using the aws-auth ConfigMap. Kubernetes Roles and RoleBindings for namespace-level access control. Bastion setup so each Linux user’s kubectl context is limited to their namespace. Step 1: Create IAM Principals Create IAM users for each person who will access the cluster:"><meta itemprop=wordCount content="526"><meta name=twitter:card content="summary"><meta name=twitter:title content="My Cloud Page"><meta name=twitter:description content="EKS RBAC per Namespace Example — Isolated Access for Multiple Users This guide explains how to set up RBAC in EKS (Amazon Elastic Kubernetes Service) so that:
+user-1 can access resources only in namespace ns-1 user-2 can access resources only in namespace ns-2 Both users will log in to a bastion VM and run kubectl commands from there.
+Overview We’ll configure:
+AWS IAM users and map them to Kubernetes identities using the aws-auth ConfigMap. Kubernetes Roles and RoleBindings for namespace-level access control. Bastion setup so each Linux user’s kubectl context is limited to their namespace. Step 1: Create IAM Principals Create IAM users for each person who will access the cluster:"></head><body class="ma0 avenir bg-near-white production"><header><div class=bg-black><nav class="pv3 ph3 ph4-ns" role=navigation><div class="flex-l center items-center justify-between"><a href=/ class="f3 fw2 hover-white white-90 dib no-underline">My Cloud Page</a><div class="flex-l items-center"><div class=ananke-socials></div></div></div></nav></div></header><main class=pb7 role=main><article class="flex-l mw8 center ph3 flex-wrap justify-between"><header class="mt4 w-100"><aside class="instapaper_ignoref b helvetica tracked ttu">Posts</aside><div id=sharing class="mt3 ananke-socials"></div><h1 class="f1 athelas mt3 mb1"></h1></header><div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id=eks-rbac-per-namespace-example--isolated-access-for-multiple-users>EKS RBAC per Namespace Example — Isolated Access for Multiple Users</h1><p>This guide explains how to set up <strong>RBAC in EKS (Amazon Elastic Kubernetes Service)</strong> so that:</p><ul><li><code>user-1</code> can access resources only in namespace <code>ns-1</code></li><li><code>user-2</code> can access resources only in namespace <code>ns-2</code></li></ul><p>Both users will log in to a <strong>bastion VM</strong> and run <code>kubectl</code> commands from there.</p><hr><h2 id=overview>Overview</h2><p>We&rsquo;ll configure:</p><ol><li><strong>AWS IAM</strong> users and map them to Kubernetes identities using the <code>aws-auth</code> ConfigMap.</li><li><strong>Kubernetes Roles and RoleBindings</strong> for namespace-level access control.</li><li><strong>Bastion setup</strong> so each Linux user’s <code>kubectl</code> context is limited to their namespace.</li></ol><hr><h2 id=step-1-create-iam-principals>Step 1: Create IAM Principals</h2><p>Create IAM users for each person who will access the cluster:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>aws iam create-user --user-name user1-iam
+</span></span><span style=display:flex><span>aws iam create-access-key --user-name user1-iam
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>aws iam create-user --user-name user2-iam
+</span></span><span style=display:flex><span>aws iam create-access-key --user-name user2-iam
+</span></span></code></pre></div><p>Attach a minimal IAM policy for EKS authentication:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;Version&#34;</span>: <span style=color:#e6db74>&#34;2012-10-17&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;Statement&#34;</span>: [
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;Sid&#34;</span>: <span style=color:#e6db74>&#34;EKSReadAndGetToken&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;Effect&#34;</span>: <span style=color:#e6db74>&#34;Allow&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;Action&#34;</span>: [
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;eks:ListClusters&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;eks:DescribeCluster&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;sts:GetCallerIdentity&#34;</span>
+</span></span><span style=display:flex><span>      ],
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;Resource&#34;</span>: <span style=color:#e6db74>&#34;*&#34;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  ]
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Each user stores credentials in their Linux home directory:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>~/.aws/credentials
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>default<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>aws_access_key_id <span style=color:#f92672>=</span> ABC...
+</span></span><span style=display:flex><span>aws_secret_access_key <span style=color:#f92672>=</span> XYZ...
+</span></span><span style=display:flex><span>region <span style=color:#f92672>=</span> ap-south-1
+</span></span></code></pre></div><hr><h2 id=step-2-map-iam-users-in-aws-auth-configmap>Step 2: Map IAM Users in <code>aws-auth</code> ConfigMap</h2><p>As an EKS admin, edit the <code>aws-auth</code> ConfigMap:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>kubectl edit configmap aws-auth -n kube-system
+</span></span></code></pre></div><p>Add mappings:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>mapUsers</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  - userarn: arn:aws:iam::123456789012:user/user1-iam
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    username: user1
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    groups:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      - eks-ns-1-group
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  - userarn: arn:aws:iam::123456789012:user/user2-iam
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    username: user2
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    groups:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      - eks-ns-2-group</span>
+</span></span></code></pre></div><p>This links AWS IAM identities to Kubernetes users/groups.</p><hr><h2 id=step-3-create-namespace-level-rbac>Step 3: Create Namespace-Level RBAC</h2><p>Create namespaces:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>kubectl create namespace ns-1
+</span></span><span style=display:flex><span>kubectl create namespace ns-2
+</span></span></code></pre></div><p>Then, define a <code>Role</code> for <code>ns-1</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># role-ns-1.yaml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>rbac.authorization.k8s.io/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Role</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>ns-1-developer</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>ns-1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>rules</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>apiGroups</span>: [<span style=color:#e6db74>&#34;&#34;</span>]
+</span></span><span style=display:flex><span>    <span style=color:#f92672>resources</span>: [<span style=color:#e6db74>&#34;pods&#34;</span>, <span style=color:#e6db74>&#34;services&#34;</span>, <span style=color:#e6db74>&#34;configmaps&#34;</span>, <span style=color:#e6db74>&#34;secrets&#34;</span>]
+</span></span><span style=display:flex><span>    <span style=color:#f92672>verbs</span>: [<span style=color:#e6db74>&#34;get&#34;</span>, <span style=color:#e6db74>&#34;list&#34;</span>, <span style=color:#e6db74>&#34;watch&#34;</span>, <span style=color:#e6db74>&#34;create&#34;</span>, <span style=color:#e6db74>&#34;delete&#34;</span>, <span style=color:#e6db74>&#34;patch&#34;</span>, <span style=color:#e6db74>&#34;update&#34;</span>]
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>apiGroups</span>: [<span style=color:#e6db74>&#34;apps&#34;</span>]
+</span></span><span style=display:flex><span>    <span style=color:#f92672>resources</span>: [<span style=color:#e6db74>&#34;deployments&#34;</span>, <span style=color:#e6db74>&#34;replicasets&#34;</span>, <span style=color:#e6db74>&#34;statefulsets&#34;</span>]
+</span></span><span style=display:flex><span>    <span style=color:#f92672>verbs</span>: [<span style=color:#e6db74>&#34;get&#34;</span>, <span style=color:#e6db74>&#34;list&#34;</span>, <span style=color:#e6db74>&#34;watch&#34;</span>, <span style=color:#e6db74>&#34;create&#34;</span>, <span style=color:#e6db74>&#34;delete&#34;</span>, <span style=color:#e6db74>&#34;patch&#34;</span>, <span style=color:#e6db74>&#34;update&#34;</span>]
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>apiGroups</span>: [<span style=color:#e6db74>&#34;batch&#34;</span>]
+</span></span><span style=display:flex><span>    <span style=color:#f92672>resources</span>: [<span style=color:#e6db74>&#34;jobs&#34;</span>, <span style=color:#e6db74>&#34;cronjobs&#34;</span>]
+</span></span><span style=display:flex><span>    <span style=color:#f92672>verbs</span>: [<span style=color:#e6db74>&#34;get&#34;</span>, <span style=color:#e6db74>&#34;list&#34;</span>, <span style=color:#e6db74>&#34;watch&#34;</span>, <span style=color:#e6db74>&#34;create&#34;</span>, <span style=color:#e6db74>&#34;delete&#34;</span>, <span style=color:#e6db74>&#34;patch&#34;</span>, <span style=color:#e6db74>&#34;update&#34;</span>]
+</span></span></code></pre></div><p>Bind it to the IAM group mapped in <code>aws-auth</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># rolebinding-ns-1.yaml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>rbac.authorization.k8s.io/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>RoleBinding</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>bind-ns-1-developer</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>ns-1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>subjects</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Group</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>name</span>: <span style=color:#ae81ff>eks-ns-1-group</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>apiGroup</span>: <span style=color:#ae81ff>rbac.authorization.k8s.io</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>roleRef</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Role</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>ns-1-developer</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>apiGroup</span>: <span style=color:#ae81ff>rbac.authorization.k8s.io</span>
+</span></span></code></pre></div><p>Repeat for <code>ns-2</code>, changing names and namespace references.</p><p>Apply the manifests:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>kubectl apply -f role-ns-1.yaml
+</span></span><span style=display:flex><span>kubectl apply -f rolebinding-ns-1.yaml
+</span></span><span style=display:flex><span>kubectl apply -f role-ns-2.yaml
+</span></span><span style=display:flex><span>kubectl apply -f rolebinding-ns-2.yaml
+</span></span></code></pre></div><hr><h2 id=step-4-bastion-vm-setup>Step 4: Bastion VM Setup</h2><p>Each Linux user on the bastion should:</p><ol><li>Install AWS CLI v2 and <code>kubectl</code></li><li>Add their AWS credentials in <code>~/.aws/credentials</code></li><li>Run:</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>aws eks update-kubeconfig --region ap-south-1 --name my-cluster
+</span></span></code></pre></div><p>This generates <code>~/.kube/config</code> using the AWS IAM identity.</p><p>Now <code>user-1</code> can access:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>kubectl get pods -n ns-1   <span style=color:#75715e># Works</span>
+</span></span><span style=display:flex><span>kubectl get pods -n ns-2   <span style=color:#75715e># Forbidden</span>
+</span></span></code></pre></div><p>And <code>user-2</code> behaves oppositely.</p><hr><h2 id=step-5-security-recommendations>Step 5: Security Recommendations</h2><ul><li>Use IAM <strong>roles</strong> with short-lived STS tokens instead of static keys.</li><li>Restrict SSH access to the bastion (consider AWS Session Manager).</li><li>Enable <strong>audit logs</strong> in EKS for accountability.</li><li>Use <strong>AWS SSO / IAM Identity Center</strong> if scaling to more users.</li></ul><hr><h2 id=summary>Summary</h2><p>✅ Each IAM user maps to a specific Kubernetes group via <code>aws-auth</code>.<br>✅ Each group has namespace-scoped RBAC permissions.<br>✅ Each Linux user on the bastion automatically authenticates with AWS IAM and is restricted to their namespace.</p><p>This ensures clean, auditable access control per namespace in your EKS cluster.</p><ul class=pa0></ul><div class="mt6 instapaper_ignoref"></div></div><aside class="w-30-l mt6-l"></aside></article></main><footer class="bg-black bottom-0 w-100 pa3" role=contentinfo><div class="flex justify-between"><a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href=https://saurabhoncloud.com/>&copy; My Cloud Page 2025</a><div><div class=ananke-socials></div></div></div></footer></body></html>
