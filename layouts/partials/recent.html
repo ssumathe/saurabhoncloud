@@ -1,0 +1,19 @@
+<section class="recent-posts">
+  <hr class="recent-sep" />
+  <h2 class="recent-title">More</h2>
+
+  <ul class="recent-list">
+    {{ $posts := first 6 (where .Site.RegularPages "Type" "post") }}
+    {{ if gt (len $posts) 0 }}
+      {{ range $posts }}
+        <li class="recent-item">
+          <a class="recent-link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+          <p class="recent-excerpt">{{ if .Params.description }}{{ .Params.description }}{{ else }}{{ .Summary }}{{ end }}</p>
+          <a class="btn read-more" href="{{ .RelPermalink }}">read more</a>
+        </li>
+      {{ end }}
+    {{ else }}
+      <li>No posts found.</li>
+    {{ end }}
+  </ul>
+</section>
