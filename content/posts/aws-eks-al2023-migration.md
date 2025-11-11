@@ -52,3 +52,68 @@ kubectl annotate serviceaccount <SERVICE_ACCOUNT_NAME> \
   -n <NAMESPACE> \
   eks.amazonaws.com/role-arn=arn:aws:iam::<AWS_ACCOUNT_ID>:role/<IAM_ROLE_NAME> \
   --overwrite
+```
+Then, restart your pods to pick up the new IAM role.
+
+💡 Example:
+If your pod needs access to an S3 bucket, attach an IAM role with the required S3 permissions to the service account.
+Add this service account to the IAM role’s trust policy in AWS IAM.
+
+⚙️ Recommended Configuration — Hop Count and Launch Templates
+
+AWS recommends setting IMDS hop count = 2 for EKS nodes running AL2023.
+To do this, you must use a custom launch template when creating your EKS node group.
+
+🧾 You can also use the launch template to customize:
+
+Storage type (gp2 → gp3)
+
+Encryption settings
+
+Network and security configurations
+
+🧱 Example: Custom Launch Template with User Data
+
+During our migration, we faced an issue where the EKS node group didn’t become active and threw the error:
+
+failed to join the kubectl cluster
+
+The fix was to include a bootstrap user_data script inside the launch template.
+This ensures that the node registers properly with the EKS control plane during provisioning.
+
+Below is the minimum required user_data content:
+---
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="//"
+
+--//
+Content-Type: application/node.eks.aws
+
+---
+apiVersion: node.eks.aws/v1alpha1
+kind: NodeConfig
+spec:
+  cluster:
+    apiServerEndpoint: https://88C1DFBF289C6EXXXXXXE6F2D95A00.gr7.ap-south-1.eks.amazonaws.com
+    certificateAuthority: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS
+    cidr: 172.20.0.0/17
+    name: eks-cdp1-p-ap-south-1-1
+--//--
+---
+
+Once this template is configured, create or update your EKS managed node group using it.
+
+Now scale up your new AL2023 node pool to the requried count once all the nodes are Ready scale down the AL2 node pool.
+
+Summary of actions:
+
+Create a custom launch template with hop count 2 and bootstrap user_data.
+
+Use AL2023 standard EKS AMI.
+
+Migrate workloads and ensure pods use IRSA-based service accounts.
+
+Decommission AL2 node groups after validation.
+
+If you encounter issues or need help debugging EKS node initialization, feel free to reach out at
+📧 hello.saurabhoncloud@gmail.com
