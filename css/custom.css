@@ -1,0 +1,36 @@
+/* Welcome block */
+.welcome {
+  padding: 3rem 1.25rem;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+  border-radius: 12px;
+  margin: 2rem auto;
+}
+.welcome .container { max-width: 900px; margin: 0 auto; text-align: left; }
+.welcome-title { font-size: 2.25rem; margin-bottom: .75rem; font-weight: 700; color: #fff; text-align: left; }
+.welcome .accent { color: #ffd700; }
+.lead { font-size: 1.05rem; line-height: 1.6; margin-bottom: .5rem; color: rgba(255,255,255,0.95); }
+.lead-sub { font-size: .98rem; color: rgba(255,255,255,0.92); margin-bottom: 1rem; }
+
+/* Button */
+.btn { display:inline-block; padding: .5rem .9rem; border-radius: 6px; text-decoration: none; font-weight: 600; }
+.cta { background: #ffd700; color: #1e3c72; margin-bottom: 1rem; }
+
+/* Recent posts */
+.recent-posts { margin-top: 2rem; }
+.recent-title { font-size: 1.5rem; margin: 1.25rem 0; }
+.recent-list { list-style: none; padding-left: 0; margin: 0; }
+.recent-item { padding: 1rem 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+.recent-link { font-weight: 600; color: inherit; text-decoration: none; }
+.recent-excerpt { margin: 0.25rem 0 0.5rem; color: rgba(0,0,0,0.6); max-width: 60ch; }
+.read-more { background: transparent; border: 1px solid rgba(0,0,0,0.1); color: inherit; padding: .35rem .6rem; border-radius: 6px; }
+
+/* Make images and code responsive site-wide */
+img { max-width: 100%; height: auto; display: block; }
+pre { overflow: auto; }
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .welcome-title { font-size: 1.5rem; }
+  .container { padding: 0 1rem; }
+}
