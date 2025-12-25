@@ -6,6 +6,10 @@ description: "How we fixed AWS Glue connection timeout issues while connecting t
 slug: "aws-glue-mongodb-ec2-connection-issue"
 tags: ["AWS", "Glue", "MongoDB", "Troubleshooting"]
 categories: ["AWS", "Glue"]
+cover:
+  image: "/images/aws-glue-mongodb.png"
+  alt: "AWS Glue MongoDB Connection Issue"
+
 ---
 
 ## Problem
@@ -51,10 +55,6 @@ I was able to connect to MongoDB successfully with this approach.
 
 If your MongoDB connection string is already handled in the Glue script,  
 **using a Network connection is simpler and more reliable** than the MongoDB connector.
-
-cover:
-  image: "/images/aws-glue-mongodb.png"
-  alt: "AWS Glue MongoDB Connection Issue"
 
 
 ---
