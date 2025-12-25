@@ -6,13 +6,17 @@ description: "How we fixed AWS Glue connection timeout issues while connecting t
 slug: "aws-glue-mongodb-ec2-connection-issue"
 tags: ["AWS", "Glue", "MongoDB", "Troubleshooting"]
 categories: ["AWS", "Glue"]
-featured_image: "/images/aws-glue-mongodb.png"
+featured_image: "/images/glue-mongo.png"
  
 ---
 
 ## Problem
 
 While working on AWS Glue jobs for our **Customer Data Platform**, we needed to connect Glue to a **MongoDB database hosted on an EC2 instance** in the same AWS account.
+
+Here is a diagram of the use case:
+![Use Case Diagram](/images/aws-glue-mongodb.png "AWS Glue to Mongo connectivity")
+
 
 Even after configuring:
 - Correct VPC and subnet  
