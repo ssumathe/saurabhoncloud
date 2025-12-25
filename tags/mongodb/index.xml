@@ -8,6 +8,5 @@
 &lt;/ul&gt;
 &lt;p&gt;…the Glue job &lt;strong&gt;kept failing with a connection timeout&lt;/strong&gt;.&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id="what-didnt-work"&gt;What Didn’t Work&lt;/h2&gt;
 &lt;p&gt;We initially used the &lt;strong&gt;MongoDB (unmanaged) connector&lt;/strong&gt; provided by AWS Glue and configured all required networking details.&lt;br&gt;
 Despite everything looking correct, the connection never succeeded.&lt;/p&gt;</description></item></channel></rss>
