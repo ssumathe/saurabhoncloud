@@ -6,7 +6,7 @@ description: "How we fixed AWS Glue connection timeout issues while connecting t
 slug: "aws-glue-mongodb-ec2-connection-issue"
 tags: ["AWS", "Glue", "MongoDB", "Troubleshooting"]
 categories: ["AWS", "Glue"]
-featured_image: "/images/glue-mongo.png"
+featured_image: "/images/DevOps_Future.png"
  
 ---
 
