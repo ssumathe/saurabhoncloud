@@ -21,14 +21,12 @@ Even after configuring:
 
 ---
 
-## What Didn’t Work
-
 We initially used the **MongoDB (unmanaged) connector** provided by AWS Glue and configured all required networking details.  
 Despite everything looking correct, the connection never succeeded.
 
 ---
 
-## Resolution (What Actually Worked)
+## Resolution
 
 Instead of using the MongoDB-specific connector, we switched to a **Network-type Glue connection**.
 
@@ -45,13 +43,7 @@ Since the **MongoDB URI was already defined inside the Glue script**, only basic
 
 Attach this **Network connection** to the Glue job.
 
----
-
-## Result
-
-✅ Glue job connected to MongoDB successfully  
-✅ No timeout issues  
-✅ No MongoDB-specific connector required  
+I was able to connect to MongoDB successfully with this approach.
 
 ---
 
