@@ -1,33 +1,12 @@
 ---
-
-
-title: "Welcome to Saurabh On Cloud blogs"
-
-
-description: "Cloud, DevOps, and Tech Blog"
-
-
-# TODO - Add more front matter fields if your theme supports them, e.g. images, sections, etc.
-
-
+title: "Saurabh On Cloud"
+description: "Real-world AWS, DevOps & Cloud troubleshooting blogs"
 ---
 
+## 👋 Hi, I’m Saurabh
 
-Hi! 👋 Welcome to my cloud technology blog.I’m **Saurabh**, a CloudOps and DevOps engineer sharing real-world insights, tutorials, and tips on AWS, DevOps, and cloud: optimization.
+I’m a **CloudOps / DevOps engineer** sharing real-world experiences, fixes, and lessons learned while working on AWS, Kubernetes, Glue, EKS, and cloud cost optimization.
 
-This blog is my personal space to share experiences, best practices, and lessons learned while working with cloud technologies.  
+This blog focuses on **practical problems and solutions**, not theory.
 
-Feel free to explore the posts, ask questions, or get in touch via [hello.saurabhoncloud@gmail.com](mailto:hello.saurabhoncloud@gmailcom).  
-
-Explore articles, tutorials, and resources on:
-
-- Cloud computing
-
-- DevOps practices
-
-- Automation
-
-- And much more!
-
-
-Happy reading!
+👉 Start with my latest posts below.
