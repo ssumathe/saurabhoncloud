@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>MongoDB on Saurabh Cloud Page</title><link>https://saurabhoncloud.com/tags/mongodb/</link><description>Recent content in MongoDB on Saurabh Cloud Page</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 18 Nov 2025 11:00:00 +0530</lastBuildDate><atom:link href="https://saurabhoncloud.com/tags/mongodb/index.xml" rel="self" type="application/rss+xml"/><item><title>AWS Glue Unable to Connect to MongoDB on EC2 — Simple Fix</title><link>https://saurabhoncloud.com/posts/aws-glue-mongodb-ec2-connection-issue/</link><pubDate>Tue, 18 Nov 2025 11:00:00 +0530</pubDate><guid>https://saurabhoncloud.com/posts/aws-glue-mongodb-ec2-connection-issue/</guid><description>&lt;h2 id="problem"&gt;Problem&lt;/h2&gt;
+&lt;p&gt;While working on AWS Glue jobs for our &lt;strong&gt;Customer Data Platform&lt;/strong&gt;, we needed to connect Glue to a &lt;strong&gt;MongoDB database hosted on an EC2 instance&lt;/strong&gt; in the same AWS account.&lt;/p&gt;
+&lt;p&gt;Even after configuring:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Correct VPC and subnet&lt;/li&gt;
+&lt;li&gt;Security groups (allowing traffic as per AWS docs)&lt;/li&gt;
+&lt;li&gt;MongoDB (unmanaged) Glue connector&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;…the Glue job &lt;strong&gt;kept failing with a connection timeout&lt;/strong&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="what-didnt-work"&gt;What Didn’t Work&lt;/h2&gt;
+&lt;p&gt;We initially used the &lt;strong&gt;MongoDB (unmanaged) connector&lt;/strong&gt; provided by AWS Glue and configured all required networking details.&lt;br&gt;
+Despite everything looking correct, the connection never succeeded.&lt;/p&gt;</description></item></channel></rss>
