@@ -14,6 +14,8 @@ featured_image: "/images/DevOps_Future.png"
 
 While working on AWS Glue jobs for our **Customer Data Platform**, we needed to connect Glue to a **MongoDB database hosted on an EC2 instance** in the same AWS account.
 
+<!--more-->
+
 Here is a diagram of the use case:
 ![Use Case Diagram](/images/aws-glue-mongodb.png "AWS Glue to Mongo connectivity")
 
