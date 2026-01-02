@@ -8,7 +8,7 @@ tags: ["AWS", "Glue", "MongoDB", "Troubleshooting"]
 categories: ["AWS", "Glue"]
 featured_image: "/images/DevOps_Future.png"
 hideFeaturedImage: true
- 
+showImageOnList: false
 ---
 
 ## Problem
