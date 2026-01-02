@@ -7,6 +7,7 @@ slug: "aws-glue-mongodb-ec2-connection-issue"
 tags: ["AWS", "Glue", "MongoDB", "Troubleshooting"]
 categories: ["AWS", "Glue"]
 featured_image: "/images/DevOps_Future.png"
+hideFeaturedImage: true
  
 ---
 
